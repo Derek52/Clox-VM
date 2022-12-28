@@ -4,3 +4,5 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 *.swp
+include/*.swp
+src/*.swp
