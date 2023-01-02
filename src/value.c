@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <string.h>
 
+#include "object.h"
 #include "memory.h"
 #include "value.h"
 
@@ -27,5 +29,32 @@ void freeValueArray(ValueArray* array) {
 }
 
 void printValue(Value value) {
-    printf("%g", value);
+    switch (value.type) {
+        case VAL_BOOL:
+            printf(AS_BOOL(value) ? "true" : "false");
+            break;
+        case VAL_NIL: printf("nil");
+            break;
+        case VAL_NUMBER:
+            printf("%g", AS_NUMBER(value));
+            break;
+        case VAL_OBJ: printObject(value);
+            break;
+    }
+}
+
+bool valuesEqual(Value a, Value b) {
+    if (a.type != b.type) return false;
+    switch (a.type) {
+        case VAL_BOOL:   return AS_BOOL(a) == AS_BOOL(b);
+        case VAL_NIL:    return true;
+        case VAL_NUMBER: return AS_NUMBER(a) == AS_NUMBER(b);
+        case VAL_OBJ: {
+            ObjString* a_str = AS_STRING(a);
+            ObjString* b_str = AS_STRING(b);
+            return (a_str->length == b_str->length) &&
+                (memcmp(a_str->chars, b_str->chars, a_str->length) == 0);
+        }
+        default:         return false;
+    }
 }

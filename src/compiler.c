@@ -149,7 +149,12 @@ static void grouping() {
 
 static void number() {
     double value = strtod(parser.previous.start, NULL);
-    emitConstant(value);
+    emitConstant(NUMBER_VAL(value));
+}
+
+static void string() {
+    emitConstant(OBJ_VAL(copyString(parser.previous.start + 1, 
+    parser.previous.length - 2)));
 }
 
 static void unary() {
@@ -173,7 +178,6 @@ static void and_() {}
 static void or_() {}
 static void this_() {}
 static void super_() {}
-static void string() {}
 static void literal() {}
 static void variable() {}
 
