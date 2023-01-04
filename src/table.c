@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "memory.h"
@@ -44,6 +45,8 @@ bool tableGet(Table* table, ObjString* key, Value* value) {
     Entry* entry = findEntry(table->entries, table->capacity, key);
     if (entry->key == NULL) return false;
 
+    *value = entry->value;
+    return true;
 }
 
 static void adjustCapacity(Table* table, int capacity) {
