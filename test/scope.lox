@@ -1,0 +1,8 @@
+{
+var always = "outer";
+{
+	var always = "inner";
+	print always;
+}
+print always;
+}
