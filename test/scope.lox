@@ -1,8 +1,8 @@
 {
-var always = "outer";
+var a = "outer";
 {
-	var always = "inner";
-	print always;
+	var a = "inner";
+	print a;
 }
-print always;
+print a;
 }
