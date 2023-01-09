@@ -1,0 +1,25 @@
+print "Begin for loop";
+for (var i = 0; i < 10; i = i + 1) {
+    print i;
+}
+print "End for loop";
+
+print "Begin while loop";
+var j = 0;
+while ( j < 10) {
+    print j;
+    j = j + 1;
+}
+print "End while loop";
+
+if (true) {
+    print "if true = true";
+} else {
+    print "Should not print this";
+}
+
+if (false) {
+    print "Should not print this";
+} else {
+    print "if false = false";
+}
